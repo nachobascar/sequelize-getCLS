@@ -816,6 +816,14 @@ Connection options can be used at the root of the option bag, in the "replicatio
   }
 
   /**
+   * Returns the CLS namespace that is used to manage transactions.
+   * This method returns undefined if the Sequelize "disableClsTransactions" option is true.
+   */
+  getCLS(): AsyncLocalStorage<Transaction> | undefined{
+    return this.#transactionCls;
+  }
+
+  /**
    * Returns the transaction that is associated to the current asynchronous operation.
    * This method returns undefined if no transaction is active in the current asynchronous operation,
    * or if the Sequelize "disableClsTransactions" option is true.
